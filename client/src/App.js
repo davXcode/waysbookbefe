@@ -72,7 +72,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/detail" element={<DetailBook />} />
+      <Route path="/detail/:id" element={<DetailBook />} />
       <Route path="/profile" element={<Profiles />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/add-book" element={<AddBook />} />

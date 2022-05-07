@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CardBook from '../components/cards/CardBook';
 import CardPromo from '../components/cards/CardPromo';
 import Navbar from '../components/navbar/Navbar';
 import { Container, Row } from 'react-bootstrap';
 import styles from './Home.module.css';
+import { useQuery } from 'react-query';
+import { API } from '../config/api';
 
 export default function Home() {
+  //fetching data from database
+  let { data: products } = useQuery('productCache', async () => {
+    const response = await API.get('/books');
+    // console.log('fetching', response);
+    return response.data.data.books;
+  });
+  // const [product1, setProduct] = useState;
+  //end of fetch data
+
   return (
     <div className="bg-home">
       <Navbar />
@@ -28,16 +39,9 @@ export default function Home() {
         <h1>List Book</h1>
 
         <Row md={5} sm={2} xs={2}>
-          <CardBook />
-          <CardBook />
-          <CardBook />
-          <CardBook />
-          <CardBook />
-          <CardBook />
-          <CardBook />
-          <CardBook />
-          <CardBook />
-          <CardBook />
+          {products?.map((item, index) => (
+            <CardBook item={item} index={index} />
+          ))}
         </Row>
       </Container>
     </div>

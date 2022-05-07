@@ -3,19 +3,26 @@ import { Link } from 'react-router-dom';
 import Rectangle from '../../images/Rectangle.png';
 import styles from './CardBook.module.css';
 import { Col } from 'react-bootstrap';
+import convertRupiah from 'rupiah-format';
 
-export default function CardBook() {
+export default function CardBook({ item, index }) {
   return (
     <Col className="mb-3">
-      <Link to={'/'} className="text-decoration-none">
+      <Link
+        to={'/detail/' + item.id}
+        key={index}
+        className="text-decoration-none"
+      >
         <img
-          src={Rectangle}
+          src={item.bookImg}
           alt="Thumbnail"
           className={`${styles.thumbnail}`}
         />
-        <h4 className={`text-dark ellipsis`}>My Own Private Mr. Cool</h4>
-        <p className={styles.author}>By. Indah Hanaco</p>
-        <h5 className={`${styles.price} mt-2`}>Rp. 75.000</h5>
+        <h4 className={`text-dark ellipsis`}>{item.title}</h4>
+        <p className={styles.author}>{item.author}</p>
+        <h5 className={`${styles.price} mt-2`}>
+          {convertRupiah.convert(item.price)}
+        </h5>
       </Link>
     </Col>
   );
