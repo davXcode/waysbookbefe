@@ -2,13 +2,13 @@ import React from 'react';
 import CardBook from '../components/cards/CardBook';
 import CardPromo from '../components/cards/CardPromo';
 import Navbar from '../components/navbar/Navbar';
+import { Container, Row } from 'react-bootstrap';
+import styles from './Home.module.css';
 
 export default function Home() {
   return (
     <div className="bg-home">
-      <div className="fixed-top">
-        <Navbar />
-      </div>
+      <Navbar />
       <div className="" style={{ height: '200px' }}></div>
       <div className="home-header container">
         <h1 className=" text-center fw-normal fs-1">
@@ -16,20 +16,18 @@ export default function Home() {
           time
         </h1>
       </div>
-      <div className="" style={{ height: '150px' }}></div>
-      <div className="d-flex overflow-auto">
+
+      <div className={`${styles.promo} mt-5`}>
         <CardPromo />
         <CardPromo />
         <CardPromo />
         <CardPromo />
       </div>
-      <div className="" style={{ height: '50px' }}></div>
-      <div className="container">
-        <h3>List Book</h3>
-      </div>
-      <div className="" style={{ height: '30px' }}></div>
-      <div className="container">
-        <div className="row ">
+
+      <Container className="mt-5 mb-4">
+        <h1>List Book</h1>
+
+        <Row md={5} sm={2} xs={2}>
           <CardBook />
           <CardBook />
           <CardBook />
@@ -37,8 +35,11 @@ export default function Home() {
           <CardBook />
           <CardBook />
           <CardBook />
-        </div>
-      </div>
+          <CardBook />
+          <CardBook />
+          <CardBook />
+        </Row>
+      </Container>
     </div>
   );
 }

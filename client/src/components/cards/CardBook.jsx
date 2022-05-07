@@ -1,29 +1,22 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Rectangle from "../../images/Rectangle.png";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Rectangle from '../../images/Rectangle.png';
+import styles from './CardBook.module.css';
+import { Col } from 'react-bootstrap';
 
 export default function CardBook() {
   return (
-    <div className="col nav-item">
-      <Link to="/detail" className="nav-link">
-        <div
-          className="bg-light my-2"
-          style={{ width: "200px", height: "395px" }}
-        >
-          <div className="" style={{ width: "200px", height: "270px" }}>
-            <img src={Rectangle} alt="" className="h-100 w-100" />
-          </div>
-          <div className="d-flex" style={{ height: "125px" }}>
-            <div className="m-0 ">
-              <p className="fs-4 lh-1 my-2 fw-bold text-dark">
-                My Own Private Mr. Cool
-              </p>
-              <p className="fw-lighter my-1 text-dark">By Indah Hanaco</p>
-              <p className="text-success fw-bold fs-5 m-0">Rp. 75.000</p>
-            </div>
-          </div>
-        </div>
+    <Col className="mb-3">
+      <Link to={'/'} className="text-decoration-none">
+        <img
+          src={Rectangle}
+          alt="Thumbnail"
+          className={`${styles.thumbnail}`}
+        />
+        <h4 className={`text-dark ellipsis`}>My Own Private Mr. Cool</h4>
+        <p className={styles.author}>By. Indah Hanaco</p>
+        <h5 className={`${styles.price} mt-2`}>Rp. 75.000</h5>
       </Link>
-    </div>
+    </Col>
   );
 }
