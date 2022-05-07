@@ -119,7 +119,7 @@ export default function Login() {
 
       // Insert data for login process
       const response = await API.post('/login', body, config);
-      console.log(response);
+      // console.log(response);
       // to know whos the user
       const user = response.data.data.user;
 

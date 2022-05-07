@@ -24,7 +24,7 @@ export default function ProfDown() {
     dropDown = (
       <>
         <li className="nav-item mb-3">
-          <Link className="dropdown-item fw-bold" to="#">
+          <Link className="dropdown-item fw-bold" to="/add-book">
             <img
               src={AddBooks}
               alt=""
