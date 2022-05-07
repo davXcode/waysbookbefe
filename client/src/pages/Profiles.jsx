@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/navbar/Navbar';
 import email from '../images/email.svg';
@@ -17,8 +17,9 @@ export default function Profiles() {
   let { data: profile } = useQuery('profileCache', async () => {
     const response = await API.get('/profile');
     console.log(response);
-    return response.data.data.profile;
+    return setProfile(response.data.data.profile);
   });
+  const [profile1, setProfile] = useState([]);
 
   return (
     <div className="bg-homes">
@@ -50,7 +51,7 @@ export default function Profiles() {
                 style={{ height: '50px', width: '50px' }}
               />
               <div className="col-lg-11 col-10 mb-4">
-                <p className="m-0 fw-bold">{state.user.gender}</p>
+                <p className="m-0 fw-bold">{profile1.gender}</p>
                 <p className="m-0 fw-lighter">Gender</p>
               </div>
               <img
@@ -60,7 +61,7 @@ export default function Profiles() {
                 style={{ height: '50px', width: '50px' }}
               />
               <div className="col-lg-11 col-10 mb-4">
-                <p className="m-0 fw-bold">{state.user.phone}</p>
+                <p className="m-0 fw-bold">{profile1.phone}</p>
                 <p className="m-0 fw-lighter">Mobile phone</p>
               </div>
               <img
@@ -70,7 +71,7 @@ export default function Profiles() {
                 style={{ height: '50px', width: '50px' }}
               />
               <div className="col-lg-11 col-10 mb-4">
-                <p className="m-0 fw-bold">{state.user.address}</p>
+                <p className="m-0 fw-bold">{profile1.address}</p>
                 <p className="m-0 fw-lighter">Address</p>
               </div>
             </div>
