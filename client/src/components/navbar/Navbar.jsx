@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import LogoApp from '../../images/LogoApp.svg';
 import Profile from '../../images/Profile.png';
@@ -8,10 +8,20 @@ import ProfDown from '../dropdown/ProfDown';
 import Login from '../auth/Login';
 import Register from '../auth/Register';
 import { UserContext } from '../../context/userContext';
+import { API } from '../../config/api';
 
 export default function Navbar() {
   const [state, dispatch] = useContext(UserContext);
   const [isLogin, setIsLogin] = useState(false);
+
+  const [data, setData] = useState({});
+  useEffect(() => {
+    API.get('/profile')
+      .then((res) => {
+        setData(res.data.data.profile);
+      })
+      .catch((err) => console.log('error', err));
+  });
 
   //Navbar
   let navbar = '';
@@ -37,7 +47,7 @@ export default function Navbar() {
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            <img src={Profile} alt="" className="img-fluid" />
+            <img src={data.avatar} alt="" className="img-fluid" />
           </div>
           <ProfDown />
         </li>
