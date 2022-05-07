@@ -49,7 +49,7 @@ function App() {
           type: 'AUTH_ERROR',
         });
       }
-      console.log(response);
+      // console.log(response);
       // // Get user data
       let payload = response.data.data.user;
       // // Get token from local storage

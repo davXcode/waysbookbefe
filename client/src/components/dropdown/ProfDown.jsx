@@ -18,7 +18,7 @@ export default function ProfDown() {
     navigate('/');
   };
 
-  console.log(state);
+  // console.log(state);
   let dropDown = '';
   if (state.user.role == 'admin') {
     dropDown = (

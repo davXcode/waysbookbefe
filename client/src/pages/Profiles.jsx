@@ -1,14 +1,25 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Navbar from "../components/navbar/Navbar";
-import email from "../images/email.svg";
-import gender from "../images/gender.svg";
-import telepon from "../images/telepon.svg";
-import address from "../images/address.svg";
-import ProfileTwo from "../images/ProfileTwo.svg";
-import CardBuy from "../components/cards/CardBuy";
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import Navbar from '../components/navbar/Navbar';
+import email from '../images/email.svg';
+import gender from '../images/gender.svg';
+import telepon from '../images/telepon.svg';
+import address from '../images/address.svg';
+import ProfileTwo from '../images/ProfileTwo.svg';
+import CardBuy from '../components/cards/CardBuy';
+import { useQuery } from 'react-query';
+import { UserContext } from '../context/userContext';
+import { API } from '../config/api';
 
 export default function Profiles() {
+  const [state, dispatch] = useContext(UserContext);
+  //fetch profile data from database
+  let { data: profile } = useQuery('profileCache', async () => {
+    const response = await API.get('/profile');
+    console.log(response);
+    return response.data.data.profile;
+  });
+
   return (
     <div className="bg-homes">
       <Navbar />
@@ -18,7 +29,7 @@ export default function Profiles() {
         </div>
         <div
           className="p-lg-5 px-3 profiles-item m-auto rounded "
-          style={{ background: "#FFD9D9" }}
+          style={{ background: '#FFD9D9' }}
         >
           <div className="row ">
             <div className="row col ">
@@ -26,40 +37,40 @@ export default function Profiles() {
                 className=" p-0"
                 src={email}
                 alt=""
-                style={{ height: "50px", width: "50px" }}
+                style={{ height: '50px', width: '50px' }}
               />
               <div className="col-lg-11 col-10 mb-4">
-                <p className="m-0 fw-bold">elang13anay@gmail.com</p>
+                <p className="m-0 fw-bold">{state.user.email}</p>
                 <p className="m-0 fw-lighter">Email</p>
               </div>
               <img
                 className=" p-0"
                 src={gender}
                 alt=""
-                style={{ height: "50px", width: "50px" }}
+                style={{ height: '50px', width: '50px' }}
               />
               <div className="col-lg-11 col-10 mb-4">
-                <p className="m-0 fw-bold">Male</p>
+                <p className="m-0 fw-bold">{state.user.gender}</p>
                 <p className="m-0 fw-lighter">Gender</p>
               </div>
               <img
                 className=" p-0"
                 src={telepon}
                 alt=""
-                style={{ height: "50px", width: "50px" }}
+                style={{ height: '50px', width: '50px' }}
               />
               <div className="col-lg-11 col-10 mb-4">
-                <p className="m-0 fw-bold">081327022727</p>
+                <p className="m-0 fw-bold">{state.user.phone}</p>
                 <p className="m-0 fw-lighter">Mobile phone</p>
               </div>
               <img
                 className=" p-0"
                 src={address}
                 alt=""
-                style={{ height: "50px", width: "50px" }}
+                style={{ height: '50px', width: '50px' }}
               />
               <div className="col-lg-11 col-10 mb-4">
-                <p className="m-0 fw-bold">Jl Raya Bandengan</p>
+                <p className="m-0 fw-bold">{state.user.address}</p>
                 <p className="m-0 fw-lighter">Address</p>
               </div>
             </div>
@@ -80,11 +91,11 @@ export default function Profiles() {
           </div>
         </div>
       </div>
-      <div style={{ height: "50px" }}></div>
+      <div style={{ height: '50px' }}></div>
       <div className="container w-75">
         <h3 className="fw-bold">My Books</h3>
       </div>
-      <div style={{ height: "10px" }}></div>
+      <div style={{ height: '10px' }}></div>
       <div className="container w-75">
         <div className="row justify-content-start">
           <CardBuy />
