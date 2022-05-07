@@ -97,7 +97,7 @@ export default function Cart() {
         </div>
       </div>
       <Modal show={alert} onHide={handleClose}>
-        remove item success
+        remove product success
       </Modal>
     </div>
   );

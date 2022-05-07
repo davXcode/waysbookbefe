@@ -9,19 +9,30 @@ import Login from '../auth/Login';
 import Register from '../auth/Register';
 import { UserContext } from '../../context/userContext';
 import { API } from '../../config/api';
+import { Badge } from 'react-bootstrap';
 
-export default function Navbar() {
+export default function Navbar({ cartsss }) {
   const [state, dispatch] = useContext(UserContext);
   const [isLogin, setIsLogin] = useState(false);
 
+  const [cartss, setCartss] = useState([]);
+
   const [data, setData] = useState({});
   useEffect(() => {
+    API.get('/carts')
+      .then((res) => {
+        setCartss(res.data.getCart);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
     API.get('/profile')
       .then((res) => {
         setData(res.data.data.profile);
       })
       .catch((err) => console.log('error', err));
-  });
+  }, [cartsss]);
 
   //Navbar
   let navbar = '';
@@ -30,6 +41,12 @@ export default function Navbar() {
       <ul className="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center ">
         <li className="nav-item ">
           <Link to="/cart" className="nav-link">
+            {cartss.length > 0 && (
+              <Badge bg="danger" pill>
+                {cartss.length > 10 ? '+10' : cartss.length}
+              </Badge>
+            )}
+
             <img
               src={cart}
               alt=""
