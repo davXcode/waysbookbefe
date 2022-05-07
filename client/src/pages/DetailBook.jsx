@@ -33,7 +33,7 @@ export default function DetailBook() {
   });
   //end of fetching
 
-  //add card
+  //add cart
   const addCart = async () => {
     const config = {
       headers: {

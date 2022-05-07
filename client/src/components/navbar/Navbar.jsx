@@ -11,7 +11,7 @@ import { UserContext } from '../../context/userContext';
 import { API } from '../../config/api';
 import { Badge } from 'react-bootstrap';
 
-export default function Navbar({ cartsss }) {
+export default function Navbar({ cartsss, cartsdelete }) {
   const [state, dispatch] = useContext(UserContext);
   const [isLogin, setIsLogin] = useState(false);
 
@@ -32,7 +32,7 @@ export default function Navbar({ cartsss }) {
         setData(res.data.data.profile);
       })
       .catch((err) => console.log('error', err));
-  }, [cartsss]);
+  }, [cartsss, cartsdelete]);
 
   //Navbar
   let navbar = '';
@@ -86,7 +86,7 @@ export default function Navbar({ cartsss }) {
   return (
     <nav className="navbar navbar-expand-lg navbar-light ">
       <div className="container py-lg-4 ">
-        <Link className="navbar-brand" to="#">
+        <Link className="navbar-brand" to="/">
           <img src={LogoApp} alt="" />
         </Link>
         <button

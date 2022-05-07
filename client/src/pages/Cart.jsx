@@ -32,7 +32,7 @@ export default function Cart() {
 
   return (
     <div className="bg-homes">
-      <Navbar />
+      <Navbar cartsdelete={alert} />
       <div className="container cart-bg ">
         <div className="col">
           <div>

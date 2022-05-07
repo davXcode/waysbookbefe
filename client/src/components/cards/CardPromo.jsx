@@ -19,6 +19,7 @@ export default function CardPromo({ item, index }) {
       console.log(error);
     }
   };
+
   return (
     <div className=" container-fluid row ">
       <div className="col">

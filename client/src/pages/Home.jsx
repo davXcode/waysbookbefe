@@ -26,7 +26,7 @@ export default function Home() {
   return (
     <div className="bg-home">
       <Navbar />
-      <div className="" style={{ height: '200px' }}></div>
+
       <div className="home-header container">
         <h1 className=" text-center fw-normal fs-1">
           With us, you can shop online & help save your high street at the same
@@ -34,6 +34,7 @@ export default function Home() {
         </h1>
       </div>
 
+      <div className="" style={{ height: '200px' }}></div>
       <div className={`${styles.promo} mt-5`}>
         {promo?.map((item, index) => (
           <CardPromo item={item} index={index} />
