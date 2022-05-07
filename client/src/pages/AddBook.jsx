@@ -141,18 +141,7 @@ export default function AddBook() {
               <img className="float-right ml-3" src={ic} alt="" />
             </label>
           </div>
-          {preview && (
-            <div>
-              <img
-                src={preview}
-                style={{
-                  maxWidth: '150px',
-                  maxHeight: '150px',
-                  objectFit: 'cover',
-                }}
-              />
-            </div>
-          )}
+
           <div className="form-group mt-3  ">
             <input
               type="file"
@@ -167,6 +156,18 @@ export default function AddBook() {
               <img className="float-right ml-2" src={ic} alt="" />
             </label>
           </div>
+          {preview && (
+            <div>
+              <img
+                src={preview}
+                style={{
+                  maxWidth: '150px',
+                  maxHeight: '150px',
+                  objectFit: 'cover',
+                }}
+              />
+            </div>
+          )}
           <div className="text-end pb-5">
             <button className="mt-3 btn btn-secondary  " type="submit">
               Add Book
