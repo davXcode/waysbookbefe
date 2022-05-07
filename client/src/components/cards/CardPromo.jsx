@@ -4,7 +4,7 @@ import Rectangle from '../../images/Rectangle.png';
 import convertRupiah from 'rupiah-format';
 import { API } from '../../config/api';
 
-export default function CardPromo({ item, index }) {
+export default function CardPromo({ item, index, alertpromos }) {
   const handleSubmit = async (addcart) => {
     try {
       // Configuration
@@ -15,6 +15,7 @@ export default function CardPromo({ item, index }) {
       };
 
       API.post('/cart', { idProduct: addcart }, config);
+      alertpromos();
     } catch (error) {
       console.log(error);
     }

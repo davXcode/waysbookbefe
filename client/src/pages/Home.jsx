@@ -2,12 +2,22 @@ import React, { useState } from 'react';
 import CardBook from '../components/cards/CardBook';
 import CardPromo from '../components/cards/CardPromo';
 import Navbar from '../components/navbar/Navbar';
-import { Container, Row } from 'react-bootstrap';
+import { Container, Row, Modal } from 'react-bootstrap';
 import styles from './Home.module.css';
 import { useQuery } from 'react-query';
 import { API } from '../config/api';
 
 export default function Home() {
+  const [alert, setAllert] = useState(false);
+
+  function handleOpen() {
+    setAllert(true);
+  }
+
+  function handleClose() {
+    setAllert(false);
+  }
+
   //fetching data from database
   let { data: products } = useQuery('productCache', async () => {
     const response = await API.get('/books');
@@ -25,7 +35,7 @@ export default function Home() {
 
   return (
     <div className="bg-home">
-      <Navbar />
+      <Navbar carthome={alert} />
 
       <div className="home-header container">
         <h1 className=" text-center fw-normal fs-1">
@@ -37,7 +47,7 @@ export default function Home() {
       <div className="" style={{ height: '200px' }}></div>
       <div className={`${styles.promo} mt-5`}>
         {promo?.map((item, index) => (
-          <CardPromo item={item} index={index} />
+          <CardPromo alertpromos={handleOpen} item={item} index={index} />
         ))}
       </div>
 
@@ -50,6 +60,9 @@ export default function Home() {
           ))}
         </Row>
       </Container>
+      <Modal show={alert} onHide={handleClose}>
+        add product success
+      </Modal>
     </div>
   );
 }
