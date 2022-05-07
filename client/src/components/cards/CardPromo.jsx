@@ -2,8 +2,23 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Rectangle from '../../images/Rectangle.png';
 import convertRupiah from 'rupiah-format';
+import { API } from '../../config/api';
 
 export default function CardPromo({ item, index }) {
+  const handleSubmit = async (addcart) => {
+    try {
+      // Configuration
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+
+      API.post('/cart', { idProduct: addcart }, config);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className=" container-fluid row ">
       <div className="col">
@@ -37,7 +52,12 @@ export default function CardPromo({ item, index }) {
               </p>
             </div>
             <div className="">
-              <button className="btn btn-dark w-100">Add to Cart</button>
+              <button
+                className="btn btn-dark w-100"
+                onClick={() => handleSubmit(item.id)}
+              >
+                Add to Cart
+              </button>
             </div>
           </div>
         </div>

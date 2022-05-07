@@ -73,6 +73,12 @@ exports.getCart = async (req, res) => {
       ],
     });
 
+    getCart = getCart.map((item) => {
+      item.book.bookPdf = process.env.PATH_FILE_PDF + item.book.bookPdf;
+      item.book.bookImg = process.env.PATH_FILE_IMG + item.book.bookImg;
+      return item;
+    });
+
     res.send({
       status: 'Success',
       getCart,
