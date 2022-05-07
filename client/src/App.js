@@ -42,7 +42,6 @@ function App() {
         },
       };
       const response = await API.get('/check-auth', config);
-
       // If the token incorrect
       if (response.status === 'failed') {
         return dispatch({

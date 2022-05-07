@@ -1,5 +1,5 @@
-const { book } = require("../../models");
-const { Op } = require("sequelize");
+const { book } = require('../../models');
+const { Op } = require('sequelize');
 
 //Promo Book
 exports.promoBooks = async (req, res) => {
@@ -7,7 +7,7 @@ exports.promoBooks = async (req, res) => {
     let data = await book.findAll({
       where: {
         price: {
-          [Op.lte]: 55000,
+          [Op.lte]: 60000,
         },
       },
     });
@@ -19,7 +19,7 @@ exports.promoBooks = async (req, res) => {
     });
 
     res.send({
-      status: "success",
+      status: 'success',
       data: {
         promoBooks: data,
       },
@@ -27,8 +27,8 @@ exports.promoBooks = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.send({
-      status: "Failed",
-      message: "Error Fetching Promo Books",
+      status: 'Failed',
+      message: 'Error Fetching Promo Books',
     });
   }
 };
@@ -39,7 +39,7 @@ exports.getBooks = async (req, res) => {
     let data = await book.findAll({
       raw: true,
       attributes: {
-        exclude: ["createdAt", "updatedAt", "idUser"],
+        exclude: ['createdAt', 'updatedAt', 'idUser'],
       },
     });
 
@@ -50,7 +50,7 @@ exports.getBooks = async (req, res) => {
     });
 
     res.send({
-      status: "success",
+      status: 'success',
       data: {
         books: data,
       },
@@ -58,8 +58,8 @@ exports.getBooks = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.send({
-      status: "Failed",
-      message: "Error Fetching All Books",
+      status: 'Failed',
+      message: 'Error Fetching All Books',
     });
   }
 };
@@ -75,7 +75,7 @@ exports.getBook = async (req, res) => {
         id,
       },
       attributes: {
-        exclude: ["createdAt", "updatedAt"],
+        exclude: ['createdAt', 'updatedAt'],
       },
     });
 
@@ -86,15 +86,15 @@ exports.getBook = async (req, res) => {
     };
 
     res.send({
-      status: "success",
+      status: 'success',
       data: {
         book: data,
       },
     });
   } catch (error) {
     res.send({
-      status: "Failed",
-      message: "Error Fetching Book",
+      status: 'Failed',
+      message: 'Error Fetching Book',
     });
   }
 };
@@ -121,12 +121,12 @@ exports.addBooks = async (req, res) => {
         id: newBook.id,
       },
       attributes: {
-        exclude: ["createdAt", "updatedAt"],
+        exclude: ['createdAt', 'updatedAt'],
       },
     });
 
     res.send({
-      status: "success",
+      status: 'success',
       data: {
         books: {
           ...newBookData.dataValues,
@@ -138,8 +138,8 @@ exports.addBooks = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.send({
-      status: "Failed",
-      message: "Error Add Books",
+      status: 'Failed',
+      message: 'Error Add Books',
     });
   }
 };
@@ -172,12 +172,12 @@ exports.updateBooks = async (req, res) => {
         id,
       },
       attributes: {
-        exclude: ["createdAt", "updatedAt"],
+        exclude: ['createdAt', 'updatedAt'],
       },
     });
 
     res.send({
-      status: "success",
+      status: 'success',
       data: {
         books: {
           ...newBookData.dataValues,
@@ -189,8 +189,8 @@ exports.updateBooks = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.send({
-      status: "Failed",
-      message: "Error Update Book",
+      status: 'Failed',
+      message: 'Error Update Book',
     });
   }
 };
@@ -207,13 +207,13 @@ exports.deleteBook = async (req, res) => {
     });
 
     res.send({
-      status: "Delete success",
+      status: 'Delete success',
     });
   } catch (error) {
     console.log(error);
     res.send({
-      status: "Failed",
-      message: "Error Delete Book",
+      status: 'Failed',
+      message: 'Error Delete Book',
     });
   }
 };

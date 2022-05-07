@@ -16,7 +16,7 @@ export default function DetailBook() {
   //fetch data
   let { data: product } = useQuery('productCache', async () => {
     const response = await API.get('/book/' + id);
-    console.log('fetching', response);
+    console.log('detailbook', response);
     return setDetailBook(response.data.data.book);
   });
   //end of fetching
@@ -28,7 +28,7 @@ export default function DetailBook() {
         <div className="row align-items-center">
           <div className=" col-lg-6 d-flex justify-content-end">
             <div style={{ width: '400px', height: '577px' }}>
-              <img src={Rectangles} alt="" className="h-100 w-100" />
+              <img src={detailBook.bookImg} alt="" className="h-100 w-100" />
             </div>
           </div>
           <div className="col-lg-4">

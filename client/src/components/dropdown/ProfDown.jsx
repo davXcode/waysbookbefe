@@ -86,13 +86,12 @@ export default function ProfDown() {
       </li>
 
       <li className="nav-item">
-        <Link className="dropdown-item fw-bold" to="#">
+        <Link onClick={logout} className="dropdown-item fw-bold" to="#">
           <img
             src={logouts}
             alt=""
             style={{ width: '2rem', height: '2rem' }}
             className="me-3"
-            onClick={logout}
           />
           Logout
         </Link>

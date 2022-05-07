@@ -14,6 +14,12 @@ export default function Home() {
     // console.log('fetching', response);
     return response.data.data.books;
   });
+
+  let { data: promo } = useQuery('promoCaches', async () => {
+    const response = await API.get('/promo-books');
+    // console.log('fetching', response);
+    return response.data.data.promoBooks;
+  });
   // const [product1, setProduct] = useState;
   //end of fetch data
 
@@ -29,10 +35,9 @@ export default function Home() {
       </div>
 
       <div className={`${styles.promo} mt-5`}>
-        <CardPromo />
-        <CardPromo />
-        <CardPromo />
-        <CardPromo />
+        {promo?.map((item, index) => (
+          <CardPromo item={item} index={index} />
+        ))}
       </div>
 
       <Container className="mt-5 mb-4">
