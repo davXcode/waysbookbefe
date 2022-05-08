@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function CardBuy({ item, index }) {
   return (
-    <div className="col mb-2">
+    <div key={index} className="col mb-2">
       <div className="my-4" style={{ width: '200px', height: '395px' }}>
         <div className="" style={{ width: '200px', height: '270px' }}>
           <img src={item.book.bookImg} alt="" className="h-100 w-100" />

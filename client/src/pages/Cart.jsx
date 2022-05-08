@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Modal } from 'react-bootstrap';
+import { Modal, ModalBody } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import rupiahFormat from 'rupiah-format';
 import CardCart from '../components/cards/CardCart';
@@ -8,17 +8,38 @@ import { API } from '../config/api';
 import attach from '../images/AttacheTransaction.png';
 
 export default function Cart() {
-  const navigate = useNavigate;
+  const navigate = useNavigate();
   const [carts, setCarts] = useState([]);
   const [trigger, setTrigger] = useState(false);
   const [alert, setAllert] = useState(false);
+  const [trx, setTrx] = useState(false);
 
+  const handleTransacion = async () => {
+    await API.post('/transaction')
+      .then((res) => {
+        // console.log('transaksi ni bos', res);
+      })
+      .catch((err) => console.log(err));
+    openTrx();
+  };
+
+  //alert delete cart
   function handleOpen() {
     setAllert(true);
   }
 
   function handleClose() {
     setAllert(false);
+  }
+
+  //alert buy product
+  function openTrx() {
+    setTrx(true);
+  }
+
+  function closeTrx() {
+    setTrx(false);
+    navigate('/profile');
   }
 
   useEffect(() => {
@@ -87,17 +108,47 @@ export default function Cart() {
                 </p>
               </div>
 
-              <form className="">
-                <button type="submit" className="btn btn-dark w-100">
-                  Pay
-                </button>
-              </form>
+              {/* <form className=""> */}
+              <button
+                onClick={() => handleTransacion()}
+                type="submit"
+                className="btn btn-dark w-100"
+              >
+                Pay
+              </button>
+              {/* </form> */}
             </div>
           </div>
         </div>
       </div>
       <Modal show={alert} onHide={handleClose}>
-        remove product success
+        <ModalBody
+          style={{
+            textAlign: 'center',
+            color: 'red',
+            fontSize: '24px',
+          }}
+        >
+          remove product success
+        </ModalBody>
+      </Modal>
+      <Modal
+        style={{
+          top: '100px',
+        }}
+        show={trx}
+        onHide={closeTrx}
+      >
+        <ModalBody
+          style={{
+            textAlign: 'center',
+            color: '#469F74',
+            fontSize: '24px',
+          }}
+        >
+          Thank you for ordering in us, please wait 1 x 24 hours to verify you
+          order
+        </ModalBody>
       </Modal>
     </div>
   );

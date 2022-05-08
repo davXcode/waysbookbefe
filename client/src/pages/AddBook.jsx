@@ -21,7 +21,7 @@ export default function AddBook() {
     bookPdf: '',
     bookImg: '',
   }); //Store product data
-  // console.log(form);
+  console.log(form);
 
   // Handle change data on form
   const handleChange = (e) => {
@@ -36,6 +36,14 @@ export default function AddBook() {
       let url = URL.createObjectURL(e.target.files[0]);
       setPreview(url);
     }
+  };
+
+  const handleChangePdf = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]:
+        e.target.type === 'file' ? e.target.files : e.target.value,
+    });
   };
 
   const handleSubmit = useMutation(async (e) => {
@@ -54,7 +62,7 @@ export default function AddBook() {
       formData.set('bookPdf', form.bookPdf[0], form?.bookPdf[0]?.name);
       formData.set('bookImg', form.bookImg[0], form?.bookImg[0]?.name);
 
-      // console.log('dataform', formData);
+      console.log('dataform', formData);
 
       // Configuration
       const config = {
@@ -133,7 +141,7 @@ export default function AddBook() {
               id="actual-btn"
               className="inputFile "
               name="bookPdf"
-              onChange={handleChange}
+              onChange={handleChangePdf}
               hidden
             />
             <label htmlFor="actual-btn" className="btn border border-dark">

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import CardBook from '../components/cards/CardBook';
 import CardPromo from '../components/cards/CardPromo';
 import Navbar from '../components/navbar/Navbar';
-import { Container, Row, Modal } from 'react-bootstrap';
+import { Container, Row, Modal, ModalBody } from 'react-bootstrap';
 import styles from './Home.module.css';
 import { useQuery } from 'react-query';
 import { API } from '../config/api';
@@ -44,7 +44,7 @@ export default function Home() {
         </h1>
       </div>
 
-      <div className="" style={{ height: '200px' }}></div>
+      <div className=""></div>
       <div className={`${styles.promo} mt-5`}>
         {promo?.map((item, index) => (
           <CardPromo alertpromos={handleOpen} item={item} index={index} />
@@ -61,7 +61,15 @@ export default function Home() {
         </Row>
       </Container>
       <Modal show={alert} onHide={handleClose}>
-        add product success
+        <ModalBody
+          style={{
+            textAlign: 'center',
+            color: '#469F74',
+            fontSize: '24px',
+          }}
+        >
+          The product is successfully added to the cart
+        </ModalBody>
       </Modal>
     </div>
   );

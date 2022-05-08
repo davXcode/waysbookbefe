@@ -22,14 +22,14 @@ export default function Profiles() {
 
   const [dtlProfile, setDtlProfile] = useState({});
   //fetch profile data from database
-  let { data: profile } = useQuery('profileCache', async () => {
-    const response = await API.get('/profile');
-    console.log(response);
-    return setProfile(response.data.data.profile);
-  });
-  const [profile1, setProfile] = useState([]);
+  // let { data: profile } = useQuery('profileCache', async () => {
+  //   const response = await API.get('/profile');
+  //   console.log(response);
+  //   return setProfile(response.data.data.profile);
+  // });
+  // const [profile1, setProfile] = useState([]);
 
-  //update profile
+  // //update profile
   const [form, setForm] = useState({
     gender: '',
     phone: '',
@@ -141,7 +141,7 @@ export default function Profiles() {
                 style={{ height: '50px', width: '50px' }}
               />
               <div className="col-lg-11 col-10 mb-4">
-                <p className="m-0 fw-bold">{profile1.gender}</p>
+                <p className="m-0 fw-bold">{dtlProfile.gender}</p>
                 <p className="m-0 fw-lighter">Gender</p>
               </div>
               <img
@@ -151,7 +151,7 @@ export default function Profiles() {
                 style={{ height: '50px', width: '50px' }}
               />
               <div className="col-lg-11 col-10 mb-4">
-                <p className="m-0 fw-bold">{profile1.phone}</p>
+                <p className="m-0 fw-bold">{dtlProfile.phone}</p>
                 <p className="m-0 fw-lighter">Mobile phone</p>
               </div>
               <img
@@ -161,7 +161,7 @@ export default function Profiles() {
                 style={{ height: '50px', width: '50px' }}
               />
               <div className="col-lg-11 col-10 mb-4">
-                <p className="m-0 fw-bold">{profile1.address}</p>
+                <p className="m-0 fw-bold">{dtlProfile.address}</p>
                 <p className="m-0 fw-lighter">Address</p>
               </div>
             </div>
@@ -170,7 +170,7 @@ export default function Profiles() {
               <div>
                 <img
                   className="w-100 h-100 mb-3"
-                  src={profile1.avatar}
+                  src={dtlProfile.avatar}
                   alt="pp"
                 />
               </div>

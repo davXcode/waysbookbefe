@@ -6,7 +6,7 @@ import convertRupiah from 'rupiah-format';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { API } from '../config/api';
-import { Modal } from 'react-bootstrap';
+import { Modal, ModalBody } from 'react-bootstrap';
 
 export default function DetailBook() {
   //fetching
@@ -110,7 +110,15 @@ export default function DetailBook() {
         </div>
       </div>
       <Modal show={alert} onHide={handleClose}>
-        add product success
+        <ModalBody
+          style={{
+            textAlign: 'center',
+            color: '#469F74',
+            fontSize: '24px',
+          }}
+        >
+          The product is successfully added to the cart
+        </ModalBody>
       </Modal>
     </div>
   );
