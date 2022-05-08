@@ -10,14 +10,14 @@ import CardBuy from '../components/cards/CardBuy';
 import { useQuery } from 'react-query';
 import { UserContext } from '../context/userContext';
 import { API } from '../config/api';
-import { Modal } from 'react-bootstrap';
+import { Modal, Container, Row } from 'react-bootstrap';
 import styles from './Profiles.module.css';
 
 export default function Profiles() {
   let navigate = useNavigate();
   const [state, dispatch] = useContext(UserContext);
   const [modalShow, setModalShow] = useState(false);
-  const [dtlBook, setDtlBook] = useState([]);
+  const [myBook, setMyBook] = useState([]);
   const [preview, setPreview] = useState(null); //For image preview
 
   const [dtlProfile, setDtlProfile] = useState({});
@@ -70,6 +70,13 @@ export default function Profiles() {
           phone: dtlProfile.phone,
           address: dtlProfile.address,
         });
+      })
+      .catch((err) => console.log(err));
+
+    API.get('/purchased-books')
+      .then((res) => {
+        setMyBook(res.data.purBook);
+        console.log(res);
       })
       .catch((err) => console.log(err));
   }, [modalShow]);
@@ -188,21 +195,15 @@ export default function Profiles() {
         </div>
       </div>
       <div style={{ height: '50px' }}></div>
-      <div className="container w-75">
-        <h3 className="fw-bold">My Books</h3>
-      </div>
-      <div style={{ height: '10px' }}></div>
-      <div className="container w-75">
-        <div className="row justify-content-start">
-          <CardBuy />
-          <CardBuy />
-          <CardBuy />
-          <CardBuy />
-          <CardBuy />
-          <CardBuy />
-          <CardBuy />
-        </div>
-      </div>
+      <Container className="mt-5 mb-4">
+        <h1>My Book</h1>
+
+        <Row md={5} sm={2} xs={2}>
+          {myBook?.map((item, index) => (
+            <CardBuy item={item} index={index} />
+          ))}
+        </Row>
+      </Container>
       <Modal
         show={modalShow}
         onHide={() => setModalShow(false)}

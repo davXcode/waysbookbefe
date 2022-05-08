@@ -13,7 +13,10 @@ const { uploadFiles } = require('../middlewares/uploadFiles.js'); // Multiple Fi
 const { getProfile, updateProfile } = require('../controllers/profile.js');
 const { addCart, getCart, deleteCart } = require('../controllers/cart.js');
 const { addTransaction, getTrxs } = require('../controllers/transaction.js');
-
+const {
+  getPurchased,
+  getOnePurchased,
+} = require('../controllers/purchased.js');
 const router = express.Router();
 
 //Route Auth
@@ -45,5 +48,9 @@ router.delete('/cart/:id', auth, deleteCart);
 //Route Transaction
 router.post('/transaction', auth, addTransaction);
 router.get('/transactions', auth, getTrxs);
+
+//Route Purchased Books
+router.get('/purchased-books', auth, getPurchased);
+router.get('/purchased/:id', auth, getOnePurchased);
 
 module.exports = router;
