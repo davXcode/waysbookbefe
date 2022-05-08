@@ -35,6 +35,17 @@ export default function ProfDown() {
           </Link>
         </li>
         <li className="nav-item mb-3">
+          <Link className="dropdown-item fw-bold" to="/admin-transaction">
+            <img
+              src={Complaint}
+              alt=""
+              style={{ width: '2rem', height: '2rem' }}
+              className="me-3"
+            />
+            Transaction
+          </Link>
+        </li>
+        <li className="nav-item mb-3">
           <Link className="dropdown-item fw-bold" to="/chat-admin">
             <img
               src={Complaint}

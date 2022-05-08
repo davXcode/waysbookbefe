@@ -13,15 +13,62 @@ export default function Cart() {
   const [trigger, setTrigger] = useState(false);
   const [alert, setAllert] = useState(false);
   const [trx, setTrx] = useState(false);
+  const [alerts, setAlerts] = useState(false);
 
   const handleTransacion = async () => {
     await API.post('/transaction')
       .then((res) => {
-        // console.log('transaksi ni bos', res);
+        /* console.log(res); */
+
+        const token = res.data.payment.token;
+
+        window.snap.pay(token, {
+          onSuccess: function (result) {
+            /* You may add your own implementation here */
+
+            console.log(result);
+            setAlerts(true);
+            setTimeout(setAlerts, 3000);
+          },
+          onPending: function (result) {
+            /* You may add your own implementation here */
+            console.log(result);
+            setAlerts(true);
+            setTimeout(setAlerts, 3000);
+          },
+          onError: function (result) {
+            /* You may add your own implementation here */
+            console.log(result);
+          },
+          onClose: function () {
+            /* You may add your own implementation here */
+            alert('you closed the popup without finishing the payment');
+          },
+        });
       })
       .catch((err) => console.log(err));
     openTrx();
   };
+
+  // midtrans
+  useEffect(() => {
+    //change this to the script source you want to load, for example this is snap.js sandbox env
+    const midtransScriptUrl = 'https://app.sandbox.midtrans.com/snap/snap.js';
+    //change this according to your client-key
+    const myMidtransClientKey = 'SB-Mid-client-tX9lnKYWM6zZbOpm';
+
+    let scriptTag = document.createElement('script');
+    scriptTag.src = midtransScriptUrl;
+    // optional if you want to set script attribute
+    // for example snap.js have data-client-key attribute
+    scriptTag.setAttribute('data-client-key', myMidtransClientKey);
+
+    document.body.appendChild(scriptTag);
+    return () => {
+      document.body.removeChild(scriptTag);
+    };
+  }, []);
+  // end of midtrans
 
   //alert delete cart
   function handleOpen() {

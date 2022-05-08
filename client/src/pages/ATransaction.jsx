@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from '../components/navbar/Navbar';
+import { useState } from 'react';
+import { API } from '../config/api';
+import convertRupiah from 'rupiah-format';
 
 export default function ATransaction() {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    API.get('/transactions')
+      .then((res) => {
+        console.log(res);
+        setData(res.data.trx);
+      })
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <div className="bg-homes">
       <Navbar />
@@ -14,29 +26,23 @@ export default function ATransaction() {
             <tr className="text-danger">
               <th>No</th>
               <th>Users</th>
-              <th>Evidence of Transfer</th>
               <th>Product Purchased</th>
               <th>Total Payment</th>
               <th>Status Payment</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Radif</td>
-              <td className="text-info">bca.jpg</td>
-              <td>My Own Private Mr. Cool</td>
-              <td>Rp. 75.000</td>
-              <td>Approve</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Radif</td>
-              <td>bca.jpg</td>
-              <td>My Own Private Mr. Cool</td>
-              <td>Rp. 75.000</td>
-              <td>Approve</td>
-            </tr>
+            {data.map((item, index) => {
+              return (
+                <tr key={item.id}>
+                  <td>{index + 1})</td>
+                  <td>{item.nameBuyer}</td>
+                  <td>{item.products}</td>
+                  <td>{convertRupiah.convert(item.total)}</td>
+                  <td>{item.status}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
