@@ -12,7 +12,11 @@ const { uploadImg } = require('../middlewares/uploadFile.js'); // One Image for 
 const { uploadFiles } = require('../middlewares/uploadFiles.js'); // Multiple Files
 const { getProfile, updateProfile } = require('../controllers/profile.js');
 const { addCart, getCart, deleteCart } = require('../controllers/cart.js');
-const { addTransaction, getTrxs } = require('../controllers/transaction.js');
+const {
+  addTransaction,
+  getTrxs,
+  notification,
+} = require('../controllers/transaction.js');
 const {
   getPurchased,
   getOnePurchased,
@@ -48,6 +52,7 @@ router.delete('/cart/:id', auth, deleteCart);
 //Route Transaction
 router.post('/transaction', auth, addTransaction);
 router.get('/transactions', auth, getTrxs);
+router.post('/notification', notification);
 
 //Route Purchased Books
 router.get('/purchased-books', auth, getPurchased);

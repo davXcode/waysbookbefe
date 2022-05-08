@@ -24,12 +24,16 @@ function Complain() {
   const [state] = useContext(UserContext);
 
   useEffect(() => {
-    socket = io('http://localhost:5000', {
-      auth: {
-        token: localStorage.getItem('token'),
-      },
-      // code here
-    });
+    socket = io(
+      'https://curvy-socks-pick-103-213-128-63.loca.lt' ||
+        'http://localhost:5000',
+      {
+        auth: {
+          token: localStorage.getItem('token'),
+        },
+        // code here
+      }
+    );
 
     socket.on('new message', () => {
       socket.emit('load messages', contact?.id);
