@@ -7,7 +7,7 @@ exports.promoBooks = async (req, res) => {
     let data = await book.findAll({
       where: {
         price: {
-          [Op.lte]: 65000,
+          [Op.lte]: 50000, //LTE = Less Than Equal
         },
       },
     });
