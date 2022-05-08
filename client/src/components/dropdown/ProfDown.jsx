@@ -35,7 +35,7 @@ export default function ProfDown() {
           </Link>
         </li>
         <li className="nav-item mb-3">
-          <Link className="dropdown-item fw-bold" to="#">
+          <Link className="dropdown-item fw-bold" to="/chat-admin">
             <img
               src={Complaint}
               alt=""
@@ -62,7 +62,7 @@ export default function ProfDown() {
           </Link>
         </li>
         <li className="nav-item mb-3">
-          <Link className="dropdown-item fw-bold" to="#">
+          <Link className="dropdown-item fw-bold" to="/chat-user">
             <img
               src={Complaint}
               alt=""

@@ -1,4 +1,4 @@
-const { user, profile, book } = require("../../models");
+const { user, profile, book } = require('../../models');
 
 exports.getProfile = async (req, res) => {
   try {
@@ -11,13 +11,13 @@ exports.getProfile = async (req, res) => {
       },
       include: {
         model: user,
-        as: "user",
+        as: 'user',
         attributes: {
-          exclude: ["createdAt", "password", "updatedAt", "id"],
+          exclude: ['createdAt', 'password', 'updatedAt', 'id'],
         },
       },
       attributes: {
-        exclude: ["createdAt", "updatedAt"],
+        exclude: ['createdAt', 'updatedAt'],
       },
     });
 
@@ -29,7 +29,7 @@ exports.getProfile = async (req, res) => {
     }
 
     res.send({
-      status: "success",
+      status: 'success',
       data: {
         profile: data,
       },
@@ -37,8 +37,8 @@ exports.getProfile = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.send({
-      status: "Failed",
-      message: "Get Profile Failed",
+      status: 'Failed',
+      message: 'Get Profile Failed',
     });
   }
 };
@@ -61,14 +61,14 @@ exports.updateProfile = async (req, res) => {
     });
 
     res.send({
-      status: "success",
+      status: 'success',
       data,
     });
   } catch (error) {
     console.log(error);
     res.send({
-      status: "Failed",
-      message: "Edit Profile Failed",
+      status: 'Failed',
+      message: 'Edit Profile Failed',
     });
   }
 };

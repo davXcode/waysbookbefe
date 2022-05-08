@@ -1,5 +1,5 @@
-"use strict";
-const { Model } = require("sequelize");
+'use strict';
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class user extends Model {
     /**
@@ -10,31 +10,45 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       user.hasOne(models.profile, {
-        as: "profile",
+        as: 'profile',
         foreignKey: {
-          name: "idUser",
+          name: 'idUser',
         },
       });
       user.hasMany(models.cart, {
-        as: "cart",
+        as: 'cart',
         foreignKey: {
-          name: "idUser",
+          name: 'idUser',
         },
       });
       user.hasMany(models.transaction, {
-        as: "transaction",
+        as: 'transaction',
         foreignKey: {
-          name: "idUser",
+          name: 'idUser',
         },
       });
       user.hasMany(models.purchasedBook, {
-        as: "purchasedBook",
+        as: 'purchasedBook',
         foreignKey: {
-          name: "idUser",
+          name: 'idUser',
+        },
+      });
+      //hasMany association to chat model
+      user.hasMany(models.chat, {
+        as: 'senderMessage',
+        foreignKey: {
+          name: 'idSender',
+        },
+      });
+      user.hasMany(models.chat, {
+        as: 'recipientMessage',
+        foreignKey: {
+          name: 'idRecipient',
         },
       });
     }
   }
+
   user.init(
     {
       email: DataTypes.STRING,
@@ -44,7 +58,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "user",
+      modelName: 'user',
     }
   );
   return user;
