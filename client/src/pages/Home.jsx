@@ -37,7 +37,7 @@ export default function Home() {
     <div className="bg-home">
       <Navbar carthome={alert} />
 
-      <div className="home-header container">
+      <div className="home-header container" style={{ height: '150px' }}>
         <h1 className=" text-center fw-normal fs-1">
           With us, you can shop online & help save your high street at the same
           time
