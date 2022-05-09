@@ -13,12 +13,13 @@ export default function CardBuy({ item, index }) {
           <div className="m-0">
             <p className="fs-4 lh-1 my-2 fw-bold">{item.book.title}</p>
             <p className="fw-lighter my-1">By: {item.book.author}</p>
-            <Link
-              to={item.book.bookPdf}
+            <a
+              href={item.book.bookPdf}
+              target="_blank"
               className="nav-link bg-dark text-center text-light"
             >
               Download
-            </Link>
+            </a>
           </div>
         </div>
       </div>

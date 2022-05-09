@@ -123,7 +123,7 @@ export default function DetailBook() {
                     href={detailBook.bookPdf}
                     style={{ textDecoration: 'none', color: 'white' }}
                   >
-                    Add Cart
+                    Download
                   </a>
                   <span className="ms-3">
                     <img src={buys} alt="" />

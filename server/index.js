@@ -12,9 +12,7 @@ const { Server } = require('socket.io');
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin:
-      'https://giant-steaks-glow-103-213-128-63.loca.lt' ||
-      'http://localhost:3000', // define client origin if both client and server have different origin
+    origin: 'http://localhost:3000',
   },
 });
 

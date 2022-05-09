@@ -18,6 +18,7 @@ export default function Profiles() {
   const [state, dispatch] = useContext(UserContext);
   const [modalShow, setModalShow] = useState(false);
   const [myBook, setMyBook] = useState([]);
+  console.log('inibuku', myBook);
   const [preview, setPreview] = useState(null); //For image preview
 
   const [dtlProfile, setDtlProfile] = useState({});
